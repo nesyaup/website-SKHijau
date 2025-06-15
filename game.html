@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - SKHijau</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+    <div class="brand">
+    <a href="index.html">SKHijau</a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="lokasi.html">Lokasi</a>
+        <a href="game.html">Game</a>
+        <a href="https://wa.me/6287720765632" target="_blank">Contact Us</a>
+    </nav>
+    </header>
+</head>
+<main>
+    <section class="game-section">
+        <body>
+            <h1>Tic Tac Toe</h1>
+
+            <div>
+                <label for="modeSelect">Mode: </label>
+                <select id="modeSelect">
+                    <option value="2p">2 Pemain</option>
+                    <option value="ai">Lawan AI</option>
+                </select>
+            </div>
+
+            <div class="scoreboard">
+                Skor X: <span id="scoreX">0</span> | Skor O: <span id="scoreO">0</span>
+            </div>
+
+            <div id="status">Player X's turn</div>
+            <div class="board" id="board"></div>
+            <button id="resetBtn">Reset Game</button>
+
+            <script>
+                const board = document.getElementById("board");
+                const statusText = document.getElementById("status");
+                const resetBtn = document.getElementById("resetBtn");
+                const modeSelect = document.getElementById("modeSelect");
+                const scoreXEl = document.getElementById("scoreX");
+                const scoreOEl = document.getElementById("scoreO");
+
+                let currentPlayer = "X";
+                let gameBoard = Array(9).fill("");
+                let gameActive = true;
+                let mode = "2p";
+                let scoreX = 0;
+                let scoreO = 0;
+
+                const winConditions = [
+                [0,1,2], [3,4,5], [6,7,8],
+                [0,3,6], [1,4,7], [2,5,8],
+                [0,4,8], [2,4,6],
+                ];
+
+                modeSelect.addEventListener("change", () => {
+                    mode = modeSelect.value;
+                    resetGame(true);
+                });
+
+                function renderBoard() {
+                    board.innerHTML = "";
+                    gameBoard.forEach((val, i) => {
+                        const cell = document.createElement("div");
+                        cell.classList.add("cell");
+                        cell.dataset.index = i;
+                        cell.textContent = val;
+                        cell.addEventListener("click", handleClick);
+                        board.appendChild(cell);
+                    });
+                }
+
+                function handleClick(e) {
+                    const index = e.target.dataset.index;
+
+                    if (gameBoard[index] || !gameActive) return;
+
+                    gameBoard[index] = currentPlayer;
+                    e.target.textContent = currentPlayer;
+
+                    checkWinner();
+
+                    if (gameActive) {
+                        currentPlayer = currentPlayer === "X" ? "O" : "X";
+                        statusText.textContent = `Player ${currentPlayer}'s turn`;
+
+                        if (mode === "ai" && currentPlayer === "O") {
+                        setTimeout(aiMove, 500); // AI delay
+                        }
+                    }
+                }  
+
+                function aiMove() {
+                    let empty = gameBoard.map((val, i) => val === "" ? i : null).filter(v => v !== null);
+                    if (empty.length === 0) return;
+
+                    let move = empty[Math.floor(Math.random() * empty.length)];
+                    gameBoard[move] = "O";
+
+                    renderBoard();
+                    checkWinner();
+
+                    if (gameActive) {
+                        currentPlayer = "X";
+                        statusText.textContent = `Player ${currentPlayer}'s turn`;
+                    }
+                }
+
+                function checkWinner() {
+                    for (let [a, b, c] of winConditions) {
+                        if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                            gameActive = false;
+                            statusText.textContent = `Player ${gameBoard[a]} wins!`;
+                            updateScore(gameBoard[a]);
+                            return;
+                        }
+                    }
+
+                    if (!gameBoard.includes("")) {
+                        gameActive = false;
+                        statusText.textContent = "It's a draw!";
+                    }
+                }
+
+                function updateScore(winner) {
+                    if (winner === "X") {
+                        scoreX++;
+                    } else if (winner === "O") {
+                        scoreO++;
+                        scoreOEl.textContent = scoreO;
+                    }
+                }
+
+                function resetGame(resetScore = false) {
+                    gameBoard = Array(9).fill("");
+                    currentPlayer = "X";
+                    gameActive = true;
+                    statusText.textContent = `Player ${currentPlayer}'s turn`;
+                    if (resetScore) {
+                        scoreX = 0;
+                        scoreO = 0;
+                        scoreXEl.textContent = "0";
+                        scoreOEl.textContent = "0";
+                    }
+                    renderBoard();
+                }
+
+                resetBtn.addEventListener("click", () => resetGame());
+
+                renderBoard();
+            </script>
+        </body>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 SKHijau. Semua Hak Dilindungi.</p>
+</footer>
+</html>

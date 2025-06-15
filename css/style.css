@@ -1,0 +1,277 @@
+/* css/style.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #D2D0A0;
+    color: #343a40;
+    text-align: center;
+}
+
+header {
+  background-color: #537D5D;
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+header .brand {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #9EBC8A;
+}
+
+main {
+    padding: 50px;
+}
+
+main h2 {
+  margin-bottom: 10px;
+}
+main p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.lokasi-section {
+    background-color: #f9f9f9;
+    padding: 40px;
+    margin: auto;
+    max-width: 1100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.lokasi-flex {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.lokasi-gambar, .lokasi-peta {
+  width: 400px;
+}
+
+.lokasi-gambar img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.lokasi-peta iframe {
+    display: flex;
+    width: 1000px;
+    height: 270px;
+    border-radius: 8px;
+    justify-content: center;
+    margin: 10px 8px;
+    border: 0;
+}
+
+.gallery-section {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 1100px;
+  padding: 40px;
+  margin: auto;
+  text-align: center;
+}
+
+.gallery-section h2 {
+  margin-bottom: 10px;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    width: 100%;
+    box-shadow: #000000;
+}
+
+.product {
+    background: #D2D0A0;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 30px;
+    flex: 1 1 200px;
+    max-width: 250px;
+    text-align: center;
+    transition: transform 0.3s;
+    margin-top: 5px;
+}
+
+.price {
+  display: block;
+  margin-top: px;
+  color: #537D5D; /* hijau, bisa diubah */
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.product p {
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+.product:hover {
+    transform: scale(1.05);
+}
+.product img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: #000000;
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.brand a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.brand a:hover {
+  color: #9EBC8A;
+}
+
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  height: 500px;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+.welcome-text {
+  max-width: 50%;
+  gap: 20px;
+  text-align: left;
+  
+}
+
+.welcome-text h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.welcome-text p {
+  font-size: 18px;
+  color: #555;
+}
+
+.welcome-image img {
+  width: 255px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.game-section {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 1100px;
+  padding: 40px;
+  margin: auto;
+  text-align: center;
+} 
+
+.scoreboard {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+#modeSelect {
+  margin: 10px 0;
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+#status {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.cell {
+  background: #537D5D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  user-select: none;
+}
+
+.cell:hover {
+  background: #D2D0A0;
+}
+
+#resetBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #537D5D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#resetBtn:hover {
+  background: #537D5D;
+}
